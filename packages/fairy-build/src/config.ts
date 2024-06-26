@@ -1,5 +1,5 @@
 import Path from "node:path";
-import type { PluginOption } from "vite";
+import type { PluginOption, UserConfig as ViteUserConfig } from "vite";
 import Presets, {
   type Cmd,
   type Preset,
@@ -66,6 +66,8 @@ export interface UserConfig {
   preset?: PresetOptions;
   plugins?: PluginOption[];
   base?: string;
+  alias?: Record<string, string>;
+  viteOptions?: ViteUserConfig;
 }
 
 export class FairyConfig {
@@ -88,6 +90,8 @@ export interface RuntimeOptions {
   port: number;
   root: string;
   base: string;
+  alias?: Record<string, string>;
+  viteOptions?: ViteUserConfig;
 }
 
 export function resolveRuntimeConfig(
@@ -103,5 +107,7 @@ export function resolveRuntimeConfig(
     port,
     root: Path.resolve(options.workDir ?? process.cwd()),
     base: cfg.base ?? "/",
+    alias: cfg.alias,
+    viteOptions: cfg.viteOptions,
   };
 }

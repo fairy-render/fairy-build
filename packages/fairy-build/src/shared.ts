@@ -1,6 +1,11 @@
 import Path from "node:path";
 import fairyPlugin from "@fairy-render/vite-plugin";
-import { type InlineConfig, type PluginOption, build as viteBuild } from "vite";
+import {
+  type InlineConfig,
+  type PluginOption,
+  mergeConfig,
+  build as viteBuild,
+} from "vite";
 import { type Entry, FairyConfig, type RuntimeOptions } from "./config.js";
 import {
   type EntryPoint,
@@ -49,10 +54,11 @@ export async function createConfig(
 ): Promise<InlineConfig> {
   const presets = await resolvePresets(cmd, cfg.preset);
 
-  return {
+  const opts = {
     configFile: false,
     root: cfg.root,
     base: cfg.base,
+    resolve: cfg.alias ? { alias: cfg.alias } : void 0,
     build: {
       ssr: kind === "server" && cmd === "build",
       rollupOptions: {
@@ -71,7 +77,12 @@ export async function createConfig(
       ...presets,
       ...(cfg.plugins ?? []),
     ],
-  };
+  } satisfies InlineConfig;
+
+  if (cfg.viteOptions) {
+    return mergeConfig(cfg.viteOptions, opts);
+  }
+  return opts;
 }
 
 export interface Options {
