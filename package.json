@@ -5,9 +5,12 @@
 		"build": "pnpm run -r --filter @fairy-render/* build",
 		"watch": "pnpm run -r --filter @fairy-render/* watch",
 		"build-example": "pnpm run -r --filter solid-example build; pnpm run -r --filter react-example build",
-		"watch-example": "pnpm run -r --filter react-example dev"
+		"watch-example": "pnpm run -r --filter react-example dev",
+		"lint": "biome lint .",
+		"fix": "biome check --apply ."
 	},
 	"dependencies": {
-		"typescript": "^5.2.2"
+		"typescript": "^5.2.2",
+		"@biomejs/biome": "^1.7.3"
 	}
 }
