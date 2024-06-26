@@ -20,6 +20,9 @@
       "style": {
         "useSingleVarDeclarator": "off",
         "noNonNullAssertion": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
       }
     }
   }
