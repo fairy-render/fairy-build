@@ -1,5 +1,5 @@
-import { For, Suspense, createEffect, createResource, lazy } from "solid-js";
 import { A, Route, Router } from "@solidjs/router";
+import { For, Suspense, createEffect, createResource, lazy } from "solid-js";
 
 const Subpage = lazy(() => import("./subpage.jsx"));
 

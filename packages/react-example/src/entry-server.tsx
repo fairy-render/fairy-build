@@ -4,8 +4,8 @@
 // 	renderToReadableStream,
 // } from "react-dom/server.browser";
 import render from "@fairy-render/react/server";
-import { App } from "./app";
 import React from "react";
+import { App } from "./app";
 
 const decoder = new TextDecoder();
 

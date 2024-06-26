@@ -1,13 +1,13 @@
 import Path from "node:path";
+import fairyPlugin from "@fairy-render/vite-plugin";
+import { type InlineConfig, type PluginOption, build as viteBuild } from "vite";
 import { type Entry, FairyConfig, type RuntimeOptions } from "./config.js";
-import { type PluginOption, build as viteBuild, type InlineConfig } from "vite";
 import {
 	type EntryPoint,
-	isEntry,
 	type UserConfig as FairyUserConfig,
+	isEntry,
 	resolvePresets,
 } from "./config.js";
-import fairyPlugin from "@fairy-render/vite-plugin";
 import type { Cmd } from "./presets.js";
 
 export async function loadConfig(path?: string): Promise<FairyConfig> {

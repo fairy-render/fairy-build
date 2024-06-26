@@ -1,9 +1,9 @@
 import type { JSX } from "solid-js";
 import {
-	render as solidRender,
+	type MountableElement,
 	hydrate,
 	isDev,
-	type MountableElement,
+	render as solidRender,
 } from "solid-js/web";
 
 export function render(

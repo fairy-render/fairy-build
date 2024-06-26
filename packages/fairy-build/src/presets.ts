@@ -1,6 +1,6 @@
-import type { Options as SolidOptions } from "vite-plugin-solid";
 import type { Options as ReactOptions } from "@vitejs/plugin-react";
 import type { PluginOption } from "vite";
+import type { Options as SolidOptions } from "vite-plugin-solid";
 
 export type Cmd = "build" | "watch";
 

@@ -1,7 +1,7 @@
 import { program } from "commander";
 import build from "../build.js";
-import watch from "../watch.js";
 import print from "../print.js";
+import watch from "../watch.js";
 
 export default function main() {
 	program

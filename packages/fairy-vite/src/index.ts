@@ -1,5 +1,5 @@
-import type { Plugin, ConfigEnv } from "vite";
 import Path from "node:path";
+import type { ConfigEnv, Plugin } from "vite";
 
 const defaultExtensions = [
 	"js",

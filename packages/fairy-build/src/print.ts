@@ -1,6 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import { resolveRuntimeConfig } from "./config.js";
-import { createRuntimeConfigJson, loadConfig, type Options } from "./shared.js";
+import { type Options, createRuntimeConfigJson, loadConfig } from "./shared.js";
 
 export default async function print(options: Options & { output?: string }) {
 	const cfg = await loadConfig(options.config);

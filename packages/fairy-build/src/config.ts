@@ -1,3 +1,4 @@
+import Path from "node:path";
 import type { PluginOption } from "vite";
 import Presets, {
 	type Cmd,
@@ -5,7 +6,6 @@ import Presets, {
 	type PresetOptionsType,
 } from "./presets.js";
 import type { Options } from "./shared.js";
-import Path from "node:path";
 
 export type DefineFn = () => UserConfig;
 

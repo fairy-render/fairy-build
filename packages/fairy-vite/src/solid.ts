@@ -1,4 +1,4 @@
-import { createFilter, type UserConfig, type Plugin } from "vite";
+import { type Plugin, type UserConfig, createFilter } from "vite";
 
 const defaultExtensions = [
 	"js",

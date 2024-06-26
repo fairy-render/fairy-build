@@ -1,6 +1,6 @@
 import { build as viteBuild } from "vite";
-import { type Options, createConfig, loadConfig } from "./shared.js";
 import { resolveRuntimeConfig } from "./config.js";
+import { type Options, createConfig, loadConfig } from "./shared.js";
 
 export default async function build(options: Options) {
 	const cfg = await loadConfig(options.config);
