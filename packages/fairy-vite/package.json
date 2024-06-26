@@ -1,10 +1,19 @@
 {
 	"name": "@fairy-render/vite-plugin",
 	"version": "0.0.1",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Rasmus Kildevæld",
+		"email": "rasmuskildevaeld@gmail.com"
+	},
 	"type": "commonjs",
 	"scripts": {
 		"build": "tsup",
-		"watch": "tsup --watch"
+		"watch": "tsup --watch",
+		"prepublishOnly": "tsup"
 	},
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
