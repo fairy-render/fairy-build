@@ -10,25 +10,25 @@ import { App } from "./app";
 const decoder = new TextDecoder();
 
 export default async function main() {
-	const html = await render(
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>,
-		{},
-	);
+  const html = await render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    {},
+  );
 
-	return html;
-	// const reader = html.getReader();
-	// const output = [];
-	// while (true) {
-	// 	const { done, value } = await reader.read();
-	// 	if (value) {
-	// 		output.push(...value);
-	// 	}
-	// 	if (done) {
-	// 		break;
-	// 	}
-	// }
-	// const buffer = new Uint8Array(output);
-	// return { content: decoder.decode(buffer.buffer), head: [] };
+  return html;
+  // const reader = html.getReader();
+  // const output = [];
+  // while (true) {
+  // 	const { done, value } = await reader.read();
+  // 	if (value) {
+  // 		output.push(...value);
+  // 	}
+  // 	if (done) {
+  // 		break;
+  // 	}
+  // }
+  // const buffer = new Uint8Array(output);
+  // return { content: decoder.decode(buffer.buffer), head: [] };
 }

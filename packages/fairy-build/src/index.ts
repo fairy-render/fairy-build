@@ -8,5 +8,5 @@ export type { UserConfig } from "./config.js";
 export { watch, build };
 
 export function defineConfig(cfg: () => UserConfig): FairyConfig {
-	return new FairyConfig(cfg);
+  return new FairyConfig(cfg);
 }

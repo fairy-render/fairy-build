@@ -3,112 +3,112 @@ import fairyPlugin from "@fairy-render/vite-plugin";
 import { type InlineConfig, type PluginOption, build as viteBuild } from "vite";
 import { type Entry, FairyConfig, type RuntimeOptions } from "./config.js";
 import {
-	type EntryPoint,
-	type UserConfig as FairyUserConfig,
-	isEntry,
-	resolvePresets,
+  type EntryPoint,
+  type UserConfig as FairyUserConfig,
+  isEntry,
+  resolvePresets,
 } from "./config.js";
 import type { Cmd } from "./presets.js";
 
 export async function loadConfig(path?: string): Promise<FairyConfig> {
-	let configPath: string | undefined;
-	if (path && Path.isAbsolute(path)) {
-		configPath = path;
-	} else {
-		configPath = Path.resolve(process.cwd(), "fairy.config.js");
-	}
+  let configPath: string | undefined;
+  if (path && Path.isAbsolute(path)) {
+    configPath = path;
+  } else {
+    configPath = Path.resolve(process.cwd(), "fairy.config.js");
+  }
 
-	const output = await import(configPath);
+  const output = await import(configPath);
 
-	if (!output?.default || !(output.default instanceof FairyConfig)) {
-		throw new Error("invalid config");
-	}
+  if (!output?.default || !(output.default instanceof FairyConfig)) {
+    throw new Error("invalid config");
+  }
 
-	return output.default;
+  return output.default;
 }
 
 export function resolveUserInput(entry: EntryPoint, kind: "client" | "server") {
-	if (typeof entry === "string") return entry;
-	if (isEntry(entry)) {
-		return entry[kind];
-	}
+  if (typeof entry === "string") return entry;
+  if (isEntry(entry)) {
+    return entry[kind];
+  }
 
-	const out: Record<string, string> = {};
-	for (const k in entry) {
-		const v = entry[k];
-		out[k] = isEntry(v) ? v[kind] : v;
-	}
+  const out: Record<string, string> = {};
+  for (const k in entry) {
+    const v = entry[k];
+    out[k] = isEntry(v) ? v[kind] : v;
+  }
 
-	return out;
+  return out;
 }
 
 export async function createConfig(
-	cfg: RuntimeOptions,
-	kind: "client" | "server",
-	cmd: Cmd,
+  cfg: RuntimeOptions,
+  kind: "client" | "server",
+  cmd: Cmd,
 ): Promise<InlineConfig> {
-	const presets = await resolvePresets(cmd, cfg.preset);
+  const presets = await resolvePresets(cmd, cfg.preset);
 
-	return {
-		configFile: false,
-		root: cfg.root,
-		base: cfg.base,
-		build: {
-			ssr: kind === "server" && cmd === "build",
-			rollupOptions: {
-				input: resolveUserInput(cfg.entry, kind),
-			},
-			minify: false,
-			assetsDir: cfg.assets,
-			outDir: cfg.outputDir,
-		},
-		define: {
-			"process.env.NODE_ENV": '"production"',
-		},
-		server: cmd === "watch" ? { port: cfg.port } : void 0,
-		plugins: [
-			fairyPlugin() as PluginOption,
-			...presets,
-			...(cfg.plugins ?? []),
-		],
-	};
+  return {
+    configFile: false,
+    root: cfg.root,
+    base: cfg.base,
+    build: {
+      ssr: kind === "server" && cmd === "build",
+      rollupOptions: {
+        input: resolveUserInput(cfg.entry, kind),
+      },
+      minify: false,
+      assetsDir: cfg.assets,
+      outDir: cfg.outputDir,
+    },
+    define: {
+      "process.env.NODE_ENV": '"production"',
+    },
+    server: cmd === "watch" ? { port: cfg.port } : void 0,
+    plugins: [
+      fairyPlugin() as PluginOption,
+      ...presets,
+      ...(cfg.plugins ?? []),
+    ],
+  };
 }
 
 export interface Options {
-	config?: string;
-	workDir?: string;
-	mode?: string;
-	port: string;
+  config?: string;
+  workDir?: string;
+  mode?: string;
+  port: string;
 }
 
 export function createRuntimeConfigJson(cfg: RuntimeOptions) {
-	const entry = cfg.entry;
+  const entry = cfg.entry;
 
-	let entries: Record<string, Entry> | Entry = {};
+  let entries: Record<string, Entry> | Entry = {};
 
-	if (typeof entry === "string") {
-		throw new Error("server");
-	}
-	if (isEntry(entry)) {
-		entries = entry;
-	} else {
-		for (const k in entry) {
-			entries[k] = entry[k] as Entry;
-		}
-	}
+  if (typeof entry === "string") {
+    throw new Error("server");
+  }
+  if (isEntry(entry)) {
+    entries = entry;
+  } else {
+    for (const k in entry) {
+      entries[k] = entry[k] as Entry;
+    }
+  }
 
-	const opts = {
-		workDir: cfg.root,
-		root: cfg.outputDir,
-		entries,
-		base: cfg.base,
-		port: cfg.port,
-		assets: cfg.assets,
-		assetsPath: `/${cfg.assets}`,
-		clientManifest: "client/.vite/manifest.json",
-		serverManifest: "server/.vite/manifest.json",
-		ssrManifest: "client/.vite/ssr-manifest.json",
-	};
+  const opts = {
+    workDir: cfg.root,
+    root: cfg.outputDir,
+    entries,
+    base: cfg.base,
+    port: cfg.port,
+    assets: cfg.assets,
+    assetsPath: `/${cfg.assets}`,
+    clientManifest: "client/.vite/manifest.json",
+    serverManifest: "server/.vite/manifest.json",
+    ssrManifest: "client/.vite/ssr-manifest.json",
+  };
 
-	return opts;
+  return opts;
 }
