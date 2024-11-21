@@ -1,5 +1,6 @@
+import { lazy } from "@fairy-render/solid";
 import { A, Route, Router } from "@solidjs/router";
-import { For, Suspense, createEffect, createResource, lazy } from "solid-js";
+import { For, Suspense, createEffect, createResource } from "solid-js";
 
 const Subpage = lazy(() => import("./subpage.jsx"));
 
@@ -20,7 +21,7 @@ export default function App(props: { url?: string }) {
 
 function Index() {
   const [res] = createResource(() =>
-    fetch("https://dummyjson.com/products?limit=5").then((resp) => resp.json()),
+    fetch("https://dummyjson.com/products?limit=5").then((resp) => resp.json())
   );
 
   createEffect(() => {

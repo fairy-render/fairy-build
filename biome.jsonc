@@ -17,6 +17,9 @@
       "complexity": {
         "useLiteralKeys": "off"
       },
+      "correctness": {
+        "noUnusedImports": "warn"
+      },
       "style": {
         "useSingleVarDeclarator": "off",
         "noNonNullAssertion": "off"
