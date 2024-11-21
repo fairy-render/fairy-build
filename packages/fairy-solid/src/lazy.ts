@@ -5,7 +5,7 @@ import { isServer } from "solid-js/web";
 export function lazy<T extends Component>(
   fn: () => Promise<{
     default: T;
-  }>
+  }>,
 ): T & {
   preload: () => Promise<{
     default: T;
@@ -22,7 +22,7 @@ export function lazy<T extends Component>(
 function serverLazy<T extends Component>(
   fn: () => Promise<{
     default: T;
-  }>
+  }>,
 ): T & {
   preload: () => Promise<{
     default: T;

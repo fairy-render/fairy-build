@@ -32,7 +32,7 @@ export type PresetOptions =
 
 export async function resolvePresets(
   cmd: Cmd,
-  preset?: PresetOptions
+  preset?: PresetOptions,
 ): Promise<PluginOption[]> {
   if (!preset) return [];
 
@@ -40,7 +40,7 @@ export async function resolvePresets(
 
   const push = async <T extends Preset>(
     key: T,
-    options?: PresetOptionsType<T>
+    options?: PresetOptionsType<T>,
   ) => {
     const p = Presets[key as Preset];
     if (!p) throw new Error(`preset "${key}" not found`);
@@ -99,7 +99,7 @@ export interface RuntimeOptions {
 
 export function resolveRuntimeConfig(
   cfg: UserConfig,
-  options: Options
+  options: Options,
 ): RuntimeOptions {
   const port = Number.parseInt(options.port ?? DefaultPort);
 

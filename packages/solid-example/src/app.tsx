@@ -21,7 +21,7 @@ export default function App(props: { url?: string }) {
 
 function Index() {
   const [res] = createResource(() =>
-    fetch("https://dummyjson.com/products?limit=5").then((resp) => resp.json())
+    fetch("https://dummyjson.com/products?limit=5").then((resp) => resp.json()),
   );
 
   createEffect(() => {

@@ -1,18 +1,8 @@
 import Path from "node:path";
 import fairyPlugin from "@fairy-render/vite-plugin";
-import {
-  type InlineConfig,
-  type PluginOption,
-  mergeConfig,
-  build as viteBuild,
-} from "vite";
+import { type InlineConfig, type PluginOption, mergeConfig } from "vite";
 import { type Entry, FairyConfig, type RuntimeOptions } from "./config.js";
-import {
-  type EntryPoint,
-  type UserConfig as FairyUserConfig,
-  isEntry,
-  resolvePresets,
-} from "./config.js";
+import { type EntryPoint, isEntry, resolvePresets } from "./config.js";
 import type { Cmd } from "./presets.js";
 
 export async function loadConfig(path?: string): Promise<FairyConfig> {
@@ -50,7 +40,7 @@ export function resolveUserInput(entry: EntryPoint, kind: "client" | "server") {
 export async function createConfig(
   cfg: RuntimeOptions,
   kind: "client" | "server",
-  cmd: Cmd
+  cmd: Cmd,
 ): Promise<InlineConfig> {
   const presets = await resolvePresets(cmd, cfg.preset);
 

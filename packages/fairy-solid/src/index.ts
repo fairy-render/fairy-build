@@ -10,7 +10,7 @@ export { lazy } from "./lazy.js";
 
 export function render(
   app: () => JSX.Element,
-  element: MountableElement
+  element: MountableElement,
 ): () => void {
   if (isDev) {
     return solidRender(app, element);

@@ -1,4 +1,4 @@
-import { type InlineConfig, createServer } from "vite";
+import { createServer } from "vite";
 import { resolveRuntimeConfig } from "./config.js";
 import { type Options, createConfig, loadConfig } from "./shared.js";
 
