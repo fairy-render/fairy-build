@@ -1,10 +1,12 @@
 {
   "name": "@fairy-render/vite-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "author": {
     "name": "Rasmus Kildevæld",

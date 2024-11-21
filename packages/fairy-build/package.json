@@ -1,6 +1,6 @@
 {
   "name": "@fairy-render/build",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -10,13 +10,16 @@
     "email": "rasmuskildevaeld@gmail.com"
   },
   "type": "module",
-  "files": ["bin", "dist", "config.schema.json"],
+  "files": [
+    "bin",
+    "dist",
+    "config.schema.json"
+  ],
   "scripts": {
     "build": "tsup",
     "watch": "tsup --watch",
     "prepublishOnly": "tsup"
   },
-
   "bin": {
     "fairy": "./bin/fairy.js"
   },
