@@ -10,7 +10,9 @@
     "email": "rasmuskildevaeld@gmail.com"
   },
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "watch": "tsup --watch",
@@ -35,10 +37,9 @@
     "@types/node": "^20.8.6",
     "tsup": "^8.1.0",
     "typescript": "^5.2.2",
-    "solid-js": "^1.8.17"
+    "solid-js": "^1.9.3"
   },
-
   "peerDependencies": {
-    "solid-js": "^1.8.17"
+    "solid-js": "^1.9.3"
   }
 }

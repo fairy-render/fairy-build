@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@fairy-render/solid": "workspace:^",
-    "@solidjs/router": "^0.13.5",
-    "solid-js": "^1.8.1"
+    "@solidjs/router": "^0.15.1",
+    "solid-js": "^1.9.3"
   }
 }
