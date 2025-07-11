@@ -33,7 +33,7 @@ export default function ({
   return {
     name: "FairyImport",
     config(config, env) {
-      const ssr = env.ssrBuild || (env as any).isSsrBuild;
+      const ssr = env.isSsrBuild || (env as any).isSsrBuild;
       return {
         ssr: {
           noExternal: true,
@@ -49,7 +49,7 @@ export default function ({
     renderDynamicImport(options) {
       if (
         !options.targetModuleId ||
-        !(environ.ssrBuild || (environ as any).isSsrBuild)
+        !(environ.isSsrBuild || (environ as any).isSsrBuild)
       )
         return;
       const key = options.targetModuleId
